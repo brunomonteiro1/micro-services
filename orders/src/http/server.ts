@@ -50,12 +50,11 @@ app.post(
 
     const span = tracer.startSpan("Acho que ta dando ruim");
 
+    trace.getActiveSpan()?.setAttribute("order_id", orderId);
+
     await setTimeout(2000);
 
     span.end();
-
-    trace.getActiveSpan()?.setAttribute("order_id", orderId);
-
     dispatchOrderCreated({
       orderId,
       amount,
